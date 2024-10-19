@@ -1,4 +1,4 @@
-# MR14015_ExamenParcial3_IDT2024
+# IDT2024_ExamenParcial3_MR14015
 
 # Autor: Marcelo Alberto Molina Romero
 
@@ -10,6 +10,6 @@ Facultad de Ingenieria y Arquitectura
 
 Escuela de Ingenieria de Sistemas Informaticos
 
-Ingeniería de Datos (2024)
+Curso de Especializacion en Ingeniería de Datos (2024)
 
 Examen Parcial 3
