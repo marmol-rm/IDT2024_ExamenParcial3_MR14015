@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{C9674DCB-5085-4A16-B785-4C70DD1589BD}") = "IDT2024_P3_MR14015", "IDT2024_P3_MR14015.dtproj", "{9127DC43-8F45-4C39-8357-318E2CDD8DE0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9127DC43-8F45-4C39-8357-318E2CDD8DE0}.Development|Default.ActiveCfg = Development
+		{9127DC43-8F45-4C39-8357-318E2CDD8DE0}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9F9D868C-5DFB-4D62-A384-1A3FC5A3AB2E}
+	EndGlobalSection
+EndGlobal
