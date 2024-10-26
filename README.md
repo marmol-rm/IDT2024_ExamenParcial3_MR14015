@@ -13,3 +13,6 @@ Escuela de Ingenieria de Sistemas Informaticos
 Curso de Especializacion en Ingeniería de Datos (2024)
 
 Examen Parcial 3
+
+Enlace a video demostrativo: 
+https://youtu.be/PYkzR7HJuSk
