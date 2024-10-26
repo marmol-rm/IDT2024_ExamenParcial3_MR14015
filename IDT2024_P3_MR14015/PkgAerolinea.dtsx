@@ -11,15 +11,15 @@
   DTS:LocaleID="21514"
   DTS:ObjectName="PkgAerolinea"
   DTS:PackageType="5"
-  DTS:VersionBuild="55"
-  DTS:VersionGUID="{464D9E29-18F3-47D4-A32F-810FD9256E4E}">
+  DTS:VersionBuild="72"
+  DTS:VersionGUID="{DC99D397-BA78-421E-BE48-31D7E26CE235}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[Administrador de conexiones de archivos planos]"
       DTS:CreationName="FLATFILE"
-      DTS:DTSID="{6936AE4E-7104-4AF0-8018-B6902BB42582}"
+      DTS:DTSID="{FE917D99-30DD-4477-AFFF-8705C972B821}"
       DTS:ObjectName="Administrador de conexiones de archivos planos">
       <DTS:ObjectData>
         <DTS:ConnectionManager
@@ -29,7 +29,7 @@
           DTS:ColumnNamesInFirstDataRow="True"
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
-          DTS:CodePage="65001"
+          DTS:CodePage="1252"
           DTS:ConnectionString="C:\Users\molin\GitHub\IDT2024_ExamenParcial3_MR14015\Archivos\Airlines.csv">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
@@ -39,16 +39,16 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Code"
-              DTS:DTSID="{34007633-DFE2-4FA6-940F-87142465CEE0}"
+              DTS:DTSID="{226EDC77-6AFF-42F2-942B-DACDC62BE911}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
-              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:ColumnDelimiter="_x000A_"
               DTS:MaximumWidth="100"
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Description"
-              DTS:DTSID="{A47D5779-5926-4B0E-A411-C6264EB0AA18}"
+              DTS:DTSID="{A595A529-F3BB-4371-9049-950BF385D411}"
               DTS:CreationName="" />
           </DTS:FlatFileColumns>
         </DTS:ConnectionManager>
@@ -106,11 +106,87 @@
           version="1">
           <components>
             <component
-              refId="Package\Llenado de DimAerolinea\Destino de ADO NET"
+              refId="Package\Llenado de DimAerolinea\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Llenado de DimAerolinea\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Llenado de DimAerolinea\Derived Column.Inputs[Derived Column Input].Columns[Description]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Description"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Llenado de DimAerolinea\Flat File Source.Outputs[Flat File Source Output].Columns[Description]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[REPLACE](#{Package\Llenado de DimAerolinea\Flat File Source.Outputs[Flat File Source Output].Columns[Description]},"\"","")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">REPLACE(Description,"\"","")</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Llenado de DimAerolinea\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Llenado de DimAerolinea\Derived Column.Inputs[Derived Column Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Llenado de DimAerolinea\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Llenado de DimAerolinea\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de DimAerolinea\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de DimAerolinea\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Llenado de DimAerolinea\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de DimAerolinea\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Llenado de DimAerolinea\Destino DimAerolinea"
               componentClassID="Microsoft.ManagedComponentHost"
               contactInfo="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
               description="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC."
-              name="Destino de ADO NET"
+              name="Destino DimAerolinea"
               usesDispositions="true"
               version="2">
               <properties>
@@ -141,7 +217,7 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Llenado de DimAerolinea\Destino de ADO NET.Connections[IDbConnection]"
+                  refId="Package\Llenado de DimAerolinea\Destino DimAerolinea.Connections[IDbConnection]"
                   connectionManagerID="Package.ConnectionManagers[HP-ECHO\IDT2024.IDT_P3_MR140151]"
                   connectionManagerRefId="Package.ConnectionManagers[HP-ECHO\IDT2024.IDT_P3_MR140151]"
                   description="Administrador de conexiones administrado"
@@ -149,41 +225,41 @@
               </connections>
               <inputs>
                 <input
-                  refId="Package\Llenado de DimAerolinea\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]"
+                  refId="Package\Llenado de DimAerolinea\Destino DimAerolinea.Inputs[Entrada de destino de ADO NET]"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="Entrada de destino de ADO NET">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Llenado de DimAerolinea\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[Code]"
-                      cachedCodepage="65001"
+                      refId="Package\Llenado de DimAerolinea\Destino DimAerolinea.Inputs[Entrada de destino de ADO NET].Columns[Code]"
+                      cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="10"
                       cachedName="Code"
-                      externalMetadataColumnId="Package\Llenado de DimAerolinea\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[codigo]"
+                      externalMetadataColumnId="Package\Llenado de DimAerolinea\Destino DimAerolinea.Inputs[Entrada de destino de ADO NET].ExternalColumns[codigo]"
                       lineageId="Package\Llenado de DimAerolinea\Flat File Source.Outputs[Flat File Source Output].Columns[Code]" />
                     <inputColumn
-                      refId="Package\Llenado de DimAerolinea\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[Description]"
-                      cachedCodepage="65001"
+                      refId="Package\Llenado de DimAerolinea\Destino DimAerolinea.Inputs[Entrada de destino de ADO NET].Columns[Description]"
+                      cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="100"
                       cachedName="Description"
-                      externalMetadataColumnId="Package\Llenado de DimAerolinea\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[descripcion]"
+                      externalMetadataColumnId="Package\Llenado de DimAerolinea\Destino DimAerolinea.Inputs[Entrada de destino de ADO NET].ExternalColumns[descripcion]"
                       lineageId="Package\Llenado de DimAerolinea\Flat File Source.Outputs[Flat File Source Output].Columns[Description]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Llenado de DimAerolinea\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[llaveAerolinea]"
+                      refId="Package\Llenado de DimAerolinea\Destino DimAerolinea.Inputs[Entrada de destino de ADO NET].ExternalColumns[llaveAerolinea]"
                       dataType="i8"
                       name="llaveAerolinea" />
                     <externalMetadataColumn
-                      refId="Package\Llenado de DimAerolinea\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[codigo]"
+                      refId="Package\Llenado de DimAerolinea\Destino DimAerolinea.Inputs[Entrada de destino de ADO NET].ExternalColumns[codigo]"
                       dataType="wstr"
                       length="10"
                       name="codigo" />
                     <externalMetadataColumn
-                      refId="Package\Llenado de DimAerolinea\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[descripcion]"
+                      refId="Package\Llenado de DimAerolinea\Destino DimAerolinea.Inputs[Entrada de destino de ADO NET].ExternalColumns[descripcion]"
                       dataType="wstr"
                       length="100"
                       name="descripcion" />
@@ -192,22 +268,22 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Llenado de DimAerolinea\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET]"
+                  refId="Package\Llenado de DimAerolinea\Destino DimAerolinea.Outputs[Salida de error de destino de ADO NET]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Salida de error de destino de ADO NET"
-                  synchronousInputId="Package\Llenado de DimAerolinea\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]">
+                  synchronousInputId="Package\Llenado de DimAerolinea\Destino DimAerolinea.Inputs[Entrada de destino de ADO NET]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Llenado de DimAerolinea\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      refId="Package\Llenado de DimAerolinea\Destino DimAerolinea.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Llenado de DimAerolinea\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      lineageId="Package\Llenado de DimAerolinea\Destino DimAerolinea.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Llenado de DimAerolinea\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      refId="Package\Llenado de DimAerolinea\Destino DimAerolinea.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Llenado de DimAerolinea\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      lineageId="Package\Llenado de DimAerolinea\Destino DimAerolinea.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -248,7 +324,7 @@
                   <outputColumns>
                     <outputColumn
                       refId="Package\Llenado de DimAerolinea\Flat File Source.Outputs[Flat File Source Output].Columns[Code]"
-                      codePage="65001"
+                      codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="IgnoreFailure"
@@ -270,7 +346,7 @@
                     </outputColumn>
                     <outputColumn
                       refId="Package\Llenado de DimAerolinea\Flat File Source.Outputs[Flat File Source Output].Columns[Description]"
-                      codePage="65001"
+                      codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="IgnoreFailure"
@@ -295,13 +371,13 @@
                     isUsed="True">
                     <externalMetadataColumn
                       refId="Package\Llenado de DimAerolinea\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Code]"
-                      codePage="65001"
+                      codePage="1252"
                       dataType="str"
                       length="10"
                       name="Code" />
                     <externalMetadataColumn
                       refId="Package\Llenado de DimAerolinea\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Description]"
-                      codePage="65001"
+                      codePage="1252"
                       dataType="str"
                       length="100"
                       name="Description" />
@@ -339,8 +415,13 @@
           </components>
           <paths>
             <path
+              refId="Package\Llenado de DimAerolinea.Paths[Derived Column Output]"
+              endId="Package\Llenado de DimAerolinea\Destino DimAerolinea.Inputs[Entrada de destino de ADO NET]"
+              name="Derived Column Output"
+              startId="Package\Llenado de DimAerolinea\Derived Column.Outputs[Derived Column Output]" />
+            <path
               refId="Package\Llenado de DimAerolinea.Paths[Flat File Source Output]"
-              endId="Package\Llenado de DimAerolinea\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]"
+              endId="Package\Llenado de DimAerolinea\Derived Column.Inputs[Derived Column Input]"
               name="Flat File Source Output"
               startId="Package\Llenado de DimAerolinea\Flat File Source.Outputs[Flat File Source Output]" />
           </paths>
@@ -371,29 +452,79 @@
     design-time-name="Package\Llenado de DimAerolinea">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="156,42"
           Id="Package\Llenado de DimAerolinea\Flat File Source"
-          TopLeft="148,109" />
+          TopLeft="295,34" />
         <NodeLayout
-          Size="183,42"
-          Id="Package\Llenado de DimAerolinea\Destino de ADO NET"
-          TopLeft="461,113" />
+          Size="185,42"
+          Id="Package\Llenado de DimAerolinea\Destino DimAerolinea"
+          TopLeft="283,206" />
+        <NodeLayout
+          Size="158,42"
+          Id="Package\Llenado de DimAerolinea\Derived Column"
+          TopLeft="397,107" />
         <EdgeLayout
           Id="Package\Llenado de DimAerolinea.Paths[Flat File Source Output]"
-          TopLeft="304,132">
+          TopLeft="373,76">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="157,0"
+              EndConnector="103,31"
               Start="0,0"
-              End="149.5,0">
+              End="103,23.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="149.5,0" />
+                    End="0,11.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.5"
+                    Point2="0,15.5"
+                    Point3="4,15.5" />
+                  <mssgle:LineSegment
+                    End="99,15.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="99,15.5"
+                    Point2="103,15.5"
+                    Point3="103,19.5" />
+                  <mssgle:LineSegment
+                    End="103,23.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Llenado de DimAerolinea.Paths[Derived Column Output]"
+          TopLeft="476,149">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-100.5,57"
+              Start="0,0"
+              End="-100.5,49.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.5"
+                    Point2="0,28.5"
+                    Point3="-4,28.5" />
+                  <mssgle:LineSegment
+                    End="-96.5,28.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-96.5,28.5"
+                    Point2="-100.5,28.5"
+                    Point3="-100.5,32.5" />
+                  <mssgle:LineSegment
+                    End="-100.5,49.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -406,7 +537,7 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Llenado de DimAerolinea\Destino de ADO NET">
+    design-time-name="Package\Llenado de DimAerolinea\Destino DimAerolinea">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

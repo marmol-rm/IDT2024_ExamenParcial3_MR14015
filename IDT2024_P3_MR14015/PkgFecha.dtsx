@@ -11,8 +11,8 @@
   DTS:LocaleID="21514"
   DTS:ObjectName="PkgFecha"
   DTS:PackageType="5"
-  DTS:VersionBuild="16"
-  DTS:VersionGUID="{24A650A1-86D5-4A22-834B-67919F8B6A69}">
+  DTS:VersionBuild="18"
+  DTS:VersionGUID="{75503AAA-E6FD-4A4F-8A59-1866C5190EB7}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -785,25 +785,25 @@
         <NodeLayout
           Size="144,42"
           Id="Package\Llenado de DimFecha\Excel Source"
-          TopLeft="170,133" />
+          TopLeft="266,61" />
         <NodeLayout
           Size="169,42"
           Id="Package\Llenado de DimFecha\Destino DimFecha"
-          TopLeft="480,133" />
+          TopLeft="257,151" />
         <EdgeLayout
           Id="Package\Llenado de DimFecha.Paths[Excel Source Output]"
-          TopLeft="314,154">
+          TopLeft="339.75,103">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="166,0"
+              EndConnector="0,48"
               Start="0,0"
-              End="158.5,0">
+              End="0,40.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="158.5,0" />
+                    End="0,40.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
